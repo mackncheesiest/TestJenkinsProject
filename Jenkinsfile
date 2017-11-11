@@ -1,10 +1,15 @@
 pipeline {
-    agent { docker 'maven:3.3.3' }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
+  agent any 
+  stages {
+    stage('build') {
+      steps {
+        sh 'mvn clean install'
+      }
     }
+    stage('celebrate') {
+      steps {
+        echo 'Hooray! We did it!'
+      }
+    }
+  }
 }
